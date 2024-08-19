@@ -2,7 +2,7 @@
 {
     public interface IClaimHelper
     {
-        int? GetUserId();
+        string? GetUserId();
         string? GetUserType();
         string? GetClaimByType(string claimType);
     }

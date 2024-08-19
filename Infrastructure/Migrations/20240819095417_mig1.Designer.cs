@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240818155203_mig7")]
-    partial class mig7
+    [Migration("20240819095417_mig1")]
+    partial class mig1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Infrastructure.Data.Entities.Base.Category", b =>
+            modelBuilder.Entity("Infrastructure.Data.Entities.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -56,7 +56,7 @@ namespace Infrastructure.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("Infrastructure.Data.Entities.Base.Product", b =>
+            modelBuilder.Entity("Infrastructure.Data.Entities.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -132,6 +132,9 @@ namespace Infrastructure.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
+                    b.Property<DateTime>("ExpiryTime")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("FullName")
                         .IsRequired()
                         .HasMaxLength(150)
@@ -187,9 +190,9 @@ namespace Infrastructure.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Infrastructure.Data.Entities.Base.Product", b =>
+            modelBuilder.Entity("Infrastructure.Data.Entities.Product", b =>
                 {
-                    b.HasOne("Infrastructure.Data.Entities.Base.Category", "Category")
+                    b.HasOne("Infrastructure.Data.Entities.Category", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -209,7 +212,7 @@ namespace Infrastructure.Migrations
                     b.Navigation("Role");
                 });
 
-            modelBuilder.Entity("Infrastructure.Data.Entities.Base.Category", b =>
+            modelBuilder.Entity("Infrastructure.Data.Entities.Category", b =>
                 {
                     b.Navigation("Products");
                 });

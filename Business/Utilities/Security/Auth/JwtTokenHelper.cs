@@ -48,11 +48,11 @@ namespace Business.Utilities.Security.Auth
         {
             new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
             new Claim(ClaimTypes.Name, user.UserName),
-            new Claim(ClaimTypes.Actor, user.Role.RoleName.ToString())
-
-        };
+            new Claim("Role", user.Role.RoleName.ToString()) // "Role" olarak düz eklenmiş claim
+    };
+     
 
             return claims;
         }
-    }
+}
 }

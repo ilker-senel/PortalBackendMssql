@@ -13,14 +13,12 @@ namespace Business.Utilities.Security.Auth
             _claims = httpContextAccessor.HttpContext?.User?.Claims ?? new List<Claim>();
         }
 
-        public int? GetUserId()
+        public string? GetUserId()
         {
-            if (int.TryParse(_claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value, out var id))
-            {
-                return id;
-            }
+            var guid = _claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
 
-            return null;
+            return guid;
+
         }
 
         public string? GetUserType()

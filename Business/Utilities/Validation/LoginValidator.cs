@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Business.Models.Request.Functional;
+using FluentValidation;
 
 namespace Business.Utilities.Validation
 {
-    internal class LoginValidator
+    public class LoginValidator : AbstractValidator<LoginDto>
     {
+        public LoginValidator()
+        {
+            RuleFor(x => x.Email).NotEmpty().WithName("Kullanıcı Adı");
+            RuleFor(x => x.Password).NotEmpty().WithName("Şifre");
+        }
     }
 }

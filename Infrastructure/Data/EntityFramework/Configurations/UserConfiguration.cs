@@ -17,10 +17,7 @@ namespace Infrastructure.Data.EntityFramework.Configurations
             builder.Property(x => x.PasswordHash).IsRequired();
             builder.Property(x => x.PasswordSalt).IsRequired();
             builder.Property(x => x.CreatedAt).IsRequired();
-            builder.Property(x => x.IsDeleted).IsRequired();
-            //builder.Property(x => x.Gender).IsRequired();
-            //builder.Property(x => x.Phone).IsRequired();
-            //builder.Property(x => x.ImagePath).IsRequired();
+            builder.Property(x => x.IsDeleted).IsRequired();          
 
             builder.HasOne(u => u.Role)
                 .WithMany(r => r.Users)
